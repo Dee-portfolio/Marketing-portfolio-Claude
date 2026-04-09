@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepak Kumar | Performance Marketer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#F5F2EE;
+  color:#1A1A1A;
+}
+
+nav{
+  position:fixed;
+  width:100%;
+  background:#F5F2EE;
+  display:flex;
+  justify-content:space-between;
+  padding:15px 40px;
+  border-bottom:1px solid #ddd;
+  z-index:1000;
+}
+
+nav a{
+  text-decoration:none;
+  margin:0 10px;
+  color:#1A1A1A;
+}
+
+.section{
+  padding:100px 40px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+h1{font-size:48px;font-family:'Playfair Display';}
+h2{font-family:'Playfair Display';}
+
+.btn{
+  background:#C8923A;
+  color:white;
+  padding:12px 20px;
+  border:none;
+  cursor:pointer;
+  margin-right:10px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border:1px solid #ddd;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.counter{
+  font-size:30px;
+  font-weight:bold;
+}
+
+.social{
+  position:fixed;
+  right:20px;
+  top:50%;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.social a{
+  text-decoration:none;
+  font-size:14px;
+  color:#1A1A1A;
+}
+
+.fade{
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.6s;
+}
+
+.fade.show{
+  opacity:1;
+  transform:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <strong>Deepak</strong>
+  <div>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="social">
+  <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+  <a href="https://instagram.com" target="_blank">Instagram</a>
+  <a href="https://github.com" target="_blank">GitHub</a>
+</div>
+
+<section class="section hero">
+  <h1>Deepak Kumar</h1>
+  <h2>Performance Marketing Specialist</h2>
+  <p>I help brands grow with data-driven ads and measurable results.</p>
+  <button class="btn" onclick="go('projects')">View Work</button>
+  <button class="btn" onclick="go('contact')">Contact</button>
+</section>
+
+<section class="section fade" id="about">
+  <h2>About</h2>
+  <p>Performance marketing fresher building real-world skills through projects and campaign simulations.</p>
+</section>
+
+<section class="section fade" id="expertise">
+  <h2>Expertise</h2>
+  <div class="grid">
+    <div class="card">Paid Ads</div>
+    <div class="card">SEO</div>
+    <div class="card">Social Media</div>
+    <div class="card">Email</div>
+    <div class="card">Analytics</div>
+    <div class="card">Funnels</div>
+  </div>
+</section>
+
+<section class="section fade" id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">Meta Ads<br>120+ leads</div>
+    <div class="card">Google Ads<br>1500+ clicks</div>
+    <div class="card">Instagram Growth<br>5K followers</div>
+  </div>
+</section>
+
+<section class="section fade">
+  <h2>Results</h2>
+  <div class="grid">
+    <div class="counter" data-target="3">0+</div>
+    <div class="counter" data-target="100">0+</div>
+    <div class="counter" data-target="5">0K+</div>
+  </div>
+</section>
+
+<section class="section fade" id="contact">
+  <h2>Contact</h2>
+  <input placeholder="Name"><br><br>
+  <input placeholder="Email"><br><br>
+  <textarea placeholder="Message"></textarea><br><br>
+  <button class="btn">Send</button>
+</section>
+
+<script>
+// smooth scroll
+function go(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// fade animation
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+    }
+  })
+});
+document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
+
+// counters
+document.querySelectorAll('.counter').forEach(el=>{
+  let target = +el.dataset.target;
+  let count = 0;
+  let interval = setInterval(()=>{
+    count++;
+    el.innerText = count + "+";
+    if(count >= target) clearInterval(interval);
+  },50);
+});
+</script>
+
+</body>
+</html>
